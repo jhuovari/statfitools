@@ -1,0 +1,21 @@
+---
+title: "An Introduction to statfitools"
+author: "Janne Huovari"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+Functions in the package are intended to use with Statistics Finland (statfi)
+data retrived with [pxweb](https://github.com/rOpenGov/pxweb).
+
+# Get statfi classifications
+
+# Clean variable names
+
+# Get Dates from statfi date information
+
+# Work with a statfi regional data 

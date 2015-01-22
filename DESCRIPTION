@@ -1,0 +1,12 @@
+Package: statfitools
+Title: Helper Functions for Working with the Data from Statistics Finland
+Version: 0.0.0.9000
+Authors@R: person("Janne", "Huovari", email = "janne.huovari@ptt.fi", role = c("aut", "cre"))
+Description: Helper Functions for Working with the Data from Statistics Finland.
+Depends: R (>= 3.1.2)
+Imports: dplyr
+License: GPL-3
+LazyData: true
+Suggests: knitr,
+    testthat
+VignetteBuilder: knitr
