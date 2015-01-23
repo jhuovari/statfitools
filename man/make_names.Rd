@@ -18,10 +18,12 @@ Try to make more convinient names than \code{\link{make.names}}.
 \details{
 Replacements:
  * replace some umlaut mark chracters with a character without
- * a space with "_"
- * \code{\link{make.names}}
+ * a space and punctuations with "_"
+ * several, leading and trailing "_"
+ * \code{\link{make.names}} with unique = TRUE
 }
 \examples{
 make_names(c("M\\u00E4\\u00E4r\\u00E4", "Regional code"))
+  make_names("Hello, world!")
 }
 

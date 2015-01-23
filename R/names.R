@@ -4,14 +4,16 @@
 #'
 #'  Replacements:
 #'  * replace some umlaut mark chracters with a character without
-#'  * a space with "_"
-#'  * \code{\link{make.names}}
+#'  * a space and punctuations with "_"
+#'  * several, leading and trailing "_"
+#'  * \code{\link{make.names}} with unique = TRUE
 #'
 #' @param x a character vector with names to change
 #' @return a character vector.
 #' @export
 #' @examples
 #'   make_names(c("M\u00E4\u00E4r\u00E4", "Regional code"))
+#'   make_names("Hello, world!")
 
 make_names <- function (x) {
 
@@ -23,7 +25,14 @@ make_names <- function (x) {
   for (i in seq_along(patt)){
     x <- gsub(patt[i], repl[i], x)
   }
-  x <- make.names(x)
+  # remove punctuations
+  x <- gsub("[[:punct:]]", "_", x)
+  # extra _
+  x <- gsub("_+", "_", x)
+  x <- gsub("^_|_$", "", x)
+
+  x <- make.names(x, unique = TRUE)
+
   x
 }
 
