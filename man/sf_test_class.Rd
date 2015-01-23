@@ -14,6 +14,9 @@ Names form Statistics Finland, see what code{\link{sf_get_class}} gives.}
 
 \item{...}{parameters to select a classification. Passed to \code{\link{sf_get_class}}.}
 }
+\value{
+a locigal. And a warning message with levels that differ.
+}
 \description{
 Test if classification used is Statistics Finland classification
 }

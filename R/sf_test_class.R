@@ -5,17 +5,18 @@
 #' Names form Statistics Finland, see what code{\link{sf_get_class}} gives.
 #' @param ... parameters to select a classification. Passed to \code{\link{sf_get_class}}.
 #' @export
+#' @return a locigal. And a warning message with levels that differ.
 
 sf_test_class <- function(x, col, ...){
-  classific <<- sf_get_class(...)[, col]
-x <<- x
-  if (is.factor(x)){
-    x <- levels(x)
-    classific <- levels(classific)
-  }
-  y <- if(length(setdiff(classific, x)) == 0) TRUE else FALSE
-  warning("Missing from x:\n", paste(classific[!classific %in% x], collapse = ", "),
-          "\nMissing from classification:\n", paste(x[!x %in% classific], collapse = ", "))
+  #TODO guess col
+  classific <- sf_get_class(...)[, col]
+
+  y1 <- setdiff(classific, x)
+  y2 <- setdiff(x, classific)
+  warning("Missing from x:\n", paste(y1, collapse = ", "),
+          "\nMissing from classification:\n", paste(y2, collapse = ", "))
+
+  y <- length(max(y1, y2)) == 0
   y
 }
 
