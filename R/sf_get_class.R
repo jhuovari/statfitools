@@ -23,17 +23,17 @@
 #' }
 #'
 #'
-#' @param year a year of the classification.
 #' @param class a a name of the classification.
+#' @param year a year of the classification.
 #' @param lang a language code. Available "fi", "en", "sv".
 #' @return a data.frame.
 #' @export
 #' @examples
-#' x <- sf_get_class(2014, "kunta")
-#' y <- sf_get_class(2013, "seutukunta")
-#' z <- sf_get_class(2013, "maakunta")
-#' t <- sf_get_class(2008, "toimiala", lang = "en")
-sf_get_class <- function(year, class, lang = "fi"){
+#' x <- sf_get_class("kunta", 2014)
+#' y <- sf_get_class("seutukunta", 2013)
+#' z <- sf_get_class("maakunta", 2013)
+#' t <- sf_get_class("toimiala", 2008, lang = "en")
+sf_get_class <- function(class, year, lang = "fi"){
   lang <- if(lang == "fi") "" else paste0("_", lang)
   base_url <- "http://tilastokeskus.fi/meta/luokitukset/"
   tk_url <- paste0(base_url, class, "/001-", year, "/tekstitiedosto", lang, ".txt")

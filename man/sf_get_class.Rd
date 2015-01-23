@@ -4,12 +4,12 @@
 \alias{sf_get_class}
 \title{Download statistical classifications from the Statistics Finland.}
 \usage{
-sf_get_class(year, class, lang = "fi")
+sf_get_class(class, year, lang = "fi")
 }
 \arguments{
-\item{year}{a year of the classification.}
-
 \item{class}{a a name of the classification.}
+
+\item{year}{a year of the classification.}
 
 \item{lang}{a language code. Available "fi", "en", "sv".}
 }
@@ -41,9 +41,9 @@ Economic
 }
 }
 \examples{
-x <- sf_get_class(2014, "kunta")
-y <- sf_get_class(2013, "seutukunta")
-z <- sf_get_class(2013, "maakunta")
-t <- sf_get_class(2008, "toimiala", lang = "en")
+x <- sf_get_class("kunta", 2014)
+y <- sf_get_class("seutukunta", 2013)
+z <- sf_get_class("maakunta", 2013)
+t <- sf_get_class("toimiala", 2008, lang = "en")
 }
 

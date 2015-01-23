@@ -17,7 +17,7 @@ Try to make more convinient names than \code{\link{make.names}}.
 }
 \details{
 Replacements:
- * replace some umlaut mark chracters with a character without (\u00C4 to A)
+ * replace some umlaut mark chracters with a character without
  * a space with "_"
  * \code{\link{make.names}}
 }

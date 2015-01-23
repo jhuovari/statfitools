@@ -3,3 +3,4 @@
 export(clean_names)
 export(make_names)
 export(sf_get_class)
+export(sf_test_class)
