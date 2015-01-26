@@ -7,12 +7,17 @@
 clean_names(x)
 }
 \arguments{
-\item{x}{an object with names to change}
+\item{x}{an object with names to change.}
 }
 \value{
 an object.
 }
 \description{
-Apply \code{\link{make_names}} to object and return an object.
+Apply \code{\link{make_names}} with \code{unique = TRUE}
+to names of the object and return the object.
+}
+\examples{
+x <- data.frame("col 1!" = c(1,2), "col 2?" = c(2,4), check.names = FALSE)
+   names(clean_names(x))
 }
 

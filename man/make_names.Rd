@@ -4,10 +4,12 @@
 \alias{make_names}
 \title{Make syntactically valid names}
 \usage{
-make_names(x)
+make_names(x, ...)
 }
 \arguments{
-\item{x}{a character vector with names to change}
+\item{x}{A character vector with names to change}
+
+\item{...}{Arguments passed to \code{\link{make.names}}}
 }
 \value{
 a character vector.
@@ -16,11 +18,11 @@ a character vector.
 Try to make more convinient names than \code{\link{make.names}}.
 }
 \details{
-Replacements:
- * replace some umlaut mark chracters with a character without
- * a space and punctuations with "_"
- * several, leading and trailing "_"
- * \code{\link{make.names}} with unique = TRUE
+Modifications:
+ * replace some umlaut mark characters with a similar characters without
+ * a space and punctuations replaced with "_"
+ * remove duplicated, leading and trailing "_"
+ * finnish with \code{\link{make.names}}
 }
 \examples{
 make_names(c("M\\u00E4\\u00E4r\\u00E4", "Regional code"))
