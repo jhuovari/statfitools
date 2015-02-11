@@ -9,10 +9,10 @@
 
 sf_test_class <- function(x, col, ...){
   #TODO guess col
-  classific <- sf_get_class(...)[, col]
+  cl <- sf_get_class(...)[, col]
 
-  y1 <- setdiff(classific, x)
-  y2 <- setdiff(x, classific)
+  y1 <- setdiff(c, x)
+  y2 <- setdiff(x, cl)
   warning("Missing from x:\n", paste(y1, collapse = ", "),
           "\nMissing from classification:\n", paste(y2, collapse = ", "))
 
