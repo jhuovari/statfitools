@@ -1,4 +1,4 @@
-# statfitools 0.0.0.9000
+# statfitools 0.1.0
 
 * sf_get_class to download statistical classifications from the Statistics Finland.
 * sf_test_class to test statistical classifications from the Statistics Finland.
