@@ -22,7 +22,8 @@ own use, but I am happy if someone else finds functions useful.
 Some of the functions are spesific to
 the data from Statistics Finland, others have more general use.
 
-To download the data from the Statistics Finland to work with use [pxweb](https://github.com/rOpenGov/pxweb).
+To download the data from the Statistics Finland 
+use [pxweb](https://github.com/rOpenGov/pxweb).
 
 
 ## Installation
@@ -38,10 +39,55 @@ devtools::install_github("jhuovari/statfitools")
 ## Usage
 
 ```{r init, message=FALSE}
-# library("statfitools")
-# library("pxweb")
-
-
+library("statfitools")
 
 ```
 
+### Preprocess data
+
+#### Make legal names
+
+Try to make more readable names than `make.names()`
+
+* `make_names()` to pass a strings. 
+* `clean_names()` to pass a data.frame or other objects with names to change.
+
+```{r clean_names}
+
+# install.packages("pxweb")
+
+dat <- pxweb::get_pxweb_data(
+  url = "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/vrm/tyokay/010_tyokay_tau_101.px",
+  dims = list(
+    Alue = c('SSS'),
+    "Pääasiallinen toiminta" = c('*'),
+    Sukupuoli = c('S'),
+    Ikä = c('SSS'),
+    Vuosi = c('*')),
+  clean = TRUE)
+
+names(dat)
+
+dat <- clean_names(dat)
+
+names(dat)
+```
+
+#### Extract code from a string
+
+```{r extract}
+
+extract_code("508 Mantta-Vilppula")
+
+```
+
+
+### Work with classifications
+
+* `sf_get_class()` to download statistical classifications from the Statistics Finland.
+* `sf_test_class()` to test statistical classifications from the Statistics Finland.
+* `sf_recode()`, `sf_name2code()` and `sf_code2name()` for recoding classifications
+
+### Work with a statfi regional data 
+#### Clean regional names
+Statistics Finland uses different formats to present regional names. Make them uniform.
