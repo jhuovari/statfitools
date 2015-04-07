@@ -1,5 +1,7 @@
 # statfitools 0.2.0
 
+* clean_times() to covert time variables to numeric or dates
+
 # statfitools 0.1.0
 
 * sf_get_class to download statistical classifications from the Statistics Finland.
