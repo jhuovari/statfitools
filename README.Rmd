@@ -73,11 +73,12 @@ dat <- clean_names(dat)
 names(dat)
 ```
 
-#### Extract code from a string
+#### Extract code or name from a code-name string
 
 ```{r extract}
 
 extract_code("508 Mantta-Vilppula")
+extract_name("508 Mantta-Vilppula")
 
 ```
 

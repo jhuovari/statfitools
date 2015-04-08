@@ -59,12 +59,14 @@ names(dat)
 #> [5] "Sukupuoli"              "values"
 ```
 
-#### Extract code from a string
+#### Extract code or name from a code-name string
 
 ``` r
 
 extract_code("508 Mantta-Vilppula")
 #> [1] 508
+extract_name("508 Mantta-Vilppula")
+#> [1] "Mantta-Vilppula"
 ```
 
 ### Work with classifications

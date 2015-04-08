@@ -2,20 +2,25 @@
 % Please edit documentation in R/extract.R
 \name{extract_code}
 \alias{extract_code}
-\title{Extract only numeric component}
+\title{Extract a code component}
 \usage{
-extract_code(x)
+extract_code(x, numbers_as_numeric = TRUE)
 }
 \arguments{
 \item{x}{A character vector (or a factor).}
+
+\item{numbers_as_numeric}{A locigal. Whether to try to convert a code to
+a numeric.}
 }
 \description{
-This uses a regular expression to strip all non-numeric character
-from a string, including minus sign. Then coerces the result to a number.
-Modification of \code{\link[dplyr]{extract_numeric}}, that does not
-strip minus sign. Useful to extract numeric codes from code-name variables.
+This uses a regular expression to get a code from beging of a character
+string. Useful to extract names from code-name variables.
 }
 \examples{
 extract_code("508 Mantta-Vilppula")
+ extract_code("508 Mantta-Vilppula", numbers_as_numeric = FALSE)
+}
+\seealso{
+\code{\link{extract_name}}
 }
 

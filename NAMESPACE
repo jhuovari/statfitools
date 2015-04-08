@@ -3,6 +3,7 @@
 export(clean_names)
 export(clean_times)
 export(extract_code)
+export(extract_name)
 export(make_names)
 export(sf_code2name)
 export(sf_get_class)

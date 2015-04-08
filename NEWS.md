@@ -1,6 +1,8 @@
+
 # statfitools 0.2.0
 
 * clean_times() to covert time variables to numeric or dates
+* `extract_name()` to extract name for code-name variable
 
 # statfitools 0.1.0
 
