@@ -1,0 +1,46 @@
+#' Download data.frame for abolished municipalities
+#'
+#' Download data.frame for abolished municipalities
+#'
+#' @param url a url for text file in Statistics Finland web page.
+#' @return data.frame with columns
+#'    old_code, old_name, "data", new_code, new_name.
+#' @export
+sf_get_ex_munic <- function(
+  url =
+    "http://www.tilastokeskus.fi/meta/luokitukset/_linkki/lakkautetut_kunnat_aakkosissa.txt"){
+  z <- read.delim2(file = url, na.strings = "-")
+  y <- z[, c(1:5)]
+  names(y) <- c("old_code", "old_name", "date", "new_code", "new_name")
+  y$date <- as.Date(y$date, format = "%d.%m.%Y")
+  y
+}
+
+
+#' Replace codes of abolished municipalities with present codes
+#'
+#' @param x a vector of municipal codes to replace.
+#' @param mcodes a data.frame in form given by \code{\link{sf_get_ex_munic}}.
+#' @param year a year which codes should be used for new codes. Default uses
+#'    the most up to date codes is mcodes.
+#' @export
+
+sf_recode_ex_munic <- function(x, mcodes = sf_get_ex_munic(), year = NULL){
+  # discard name changes
+  mcodes <- subset(mcodes, !(old_code == new_code))
+
+  if (!is.null(year)){
+    mcodes  <- subset(mcodes, date < as.Date(paste(year, 1, 1, sep = "-")))
+  }
+  # there could be several changes for municipalities
+  y <- tidyr::extract_numeric(x)
+  if (any(is.na(y))){
+    y[is.na(y)] <- 0
+    warning(unique(x[is.na(y)]), " replaced with 0")
+  }
+  while (any(y %in% mcodes$old_code)){
+    y <- plyr::mapvalues(y, mcodes$old_code, mcodes$new_code, warn_missing = FALSE)
+  }
+  y <- factor(y)
+  y
+}

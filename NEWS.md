@@ -1,3 +1,7 @@
+# statfitools 0.3.0
+
+* `sf_recode_ex_munic()` to recode abolished municipalities. 
+  `sf_get_ex_munic()´ download codes.
 
 # statfitools 0.2.0
 
