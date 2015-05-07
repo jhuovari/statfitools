@@ -21,7 +21,9 @@ sf_get_ex_munic <- function(
 #'
 #' @param x a vector of municipal codes to replace.
 #' @param mcodes a data.frame in form given by \code{\link{sf_get_ex_munic}}.
-#' @param year a year which codes should be used for new codes. Default uses
+#' @param year a year which codes should be used for new codes. Changes up to
+#'    1.1. at that year.
+#'    `NULL` (the default) uses
 #'    the most up to date codes is mcodes.
 #' @export
 
@@ -30,7 +32,7 @@ sf_recode_ex_munic <- function(x, mcodes = sf_get_ex_munic(), year = NULL){
   mcodes <- subset(mcodes, !(old_code == new_code))
 
   if (!is.null(year)){
-    mcodes  <- subset(mcodes, date < as.Date(paste(year, 1, 1, sep = "-")))
+    mcodes  <- subset(mcodes, date < as.Date(paste(year, 1, 2, sep = "-")))
   }
   # there could be several changes for municipalities
   y <- tidyr::extract_numeric(x)

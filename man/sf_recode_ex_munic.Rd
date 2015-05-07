@@ -11,7 +11,9 @@ sf_recode_ex_munic(x, mcodes = sf_get_ex_munic(), year = NULL)
 
 \item{mcodes}{a data.frame in form given by \code{\link{sf_get_ex_munic}}.}
 
-\item{year}{a year which codes should be used for new codes. Default uses
+\item{year}{a year which codes should be used for new codes. Changes up to
+1.1. at that year.
+`NULL` (the default) uses
 the most up to date codes is mcodes.}
 }
 \description{
