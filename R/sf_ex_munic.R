@@ -6,9 +6,11 @@
 #' @return data.frame with columns
 #'    old_code, old_name, "data", new_code, new_name.
 #' @export
+#' @examples k <- sf_get_ex_munic()
 sf_get_ex_munic <- function(
   url =
-    "http://www.tilastokeskus.fi/meta/luokitukset/_linkki/lakkautetut_kunnat_aakkosissa.txt"){
+    "http://www.tilastokeskus.fi/meta/luokitukset/_linkki/lakkautetut_kunnat_aakkosissa_15.txt")
+{
   z <- read.delim2(file = url, na.strings = "-")
   y <- z[, c(1:5)]
   names(y) <- c("old_code", "old_name", "date", "new_code", "new_name")
