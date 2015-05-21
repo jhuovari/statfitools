@@ -1,5 +1,10 @@
 # statfitools 0.3.0
 
+* `extract_name()` recognise now more complex codes.
+
+
+# statfitools 0.3.0
+
 * `sf_recode_ex_munic()` to recode abolished municipalities. 
   `sf_get_ex_munic()` download codes.
 * `sf_get_class_key()` and `sf_get_reg_key()` to get classifications keys.
