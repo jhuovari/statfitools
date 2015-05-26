@@ -22,14 +22,14 @@ sf_get_ex_munic <- function(
 #' Replace codes of abolished municipalities with present codes
 #'
 #' @param x a vector of municipal codes to replace.
-#' @param mcodes a data.frame in form given by \code{\link{sf_get_ex_munic}}.
 #' @param year a year which codes should be used for new codes. Changes up to
 #'    1.1. at that year.
 #'    `NULL` (the default) uses
 #'    the most up to date codes is mcodes.
+#' @param mcodes a data.frame in form given by \code{\link{sf_get_ex_munic}}.
 #' @export
 
-sf_recode_ex_munic <- function(x, mcodes = sf_get_ex_munic(), year = NULL){
+sf_recode_ex_munic <- function(x, year = NULL, mcodes = sf_get_ex_munic()){
   # discard name changes
   mcodes <- subset(mcodes, !(old_code == new_code))
 
