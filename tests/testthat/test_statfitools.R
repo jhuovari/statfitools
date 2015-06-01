@@ -12,6 +12,7 @@ test_that("extract_code returns numeric",{
 test_that("extract_name returns name",{
   expect_equal(extract_name("508 Mantta-Vilppula"), "Mantta-Vilppula")
   expect_equal(extract_name("S1311 Valtionhallinto ee"), "Valtionhallinto ee")
+  expect_equal(extract_name("Valtionhallinto"), "Valtionhallinto")
   expect_equal(extract_name("G01  Yleinen julkishallinto"), "Yleinen julkishallinto")
   expect_equal(extract_name("B1GMHT/HI00 Bruttokansantuote, hintaindeksi 2010=100"),
                "Bruttokansantuote, hintaindeksi 2010=100")

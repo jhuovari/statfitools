@@ -38,6 +38,6 @@ extract_code <- function (x, numbers_as_numeric = TRUE) {
 #'  extract_name("S1311 Valtionhallinto")
 
 extract_name <- function (x) {
-  gsub("^[[:alnum:][:punct:]]* *", "", x)
+  gsub("^[[:alnum:][:punct:]]+ +", "", x)
 }
 
