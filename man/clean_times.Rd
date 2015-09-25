@@ -27,5 +27,6 @@ Convert Statfin time variable(s) to numeric or date
 \examples{
 public_debt2 <- clean_times(public_debt)
 str(public_debt2)
+str(clean_times(output_ind, time_format = "date"))
 }
 
