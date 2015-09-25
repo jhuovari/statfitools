@@ -7,12 +7,12 @@
 make_names(x, ...)
 }
 \arguments{
-\item{x}{A character vector with names to change}
+\item{x}{A character vector (of factor) with names to change}
 
 \item{...}{Arguments passed to \code{\link{make.names}}}
 }
 \value{
-a character vector.
+a character vector (or factor).
 }
 \description{
 Try to make more convinient names than \code{\link{make.names}}.

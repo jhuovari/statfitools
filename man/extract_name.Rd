@@ -9,6 +9,9 @@ extract_name(x)
 \arguments{
 \item{x}{A character vector (or a factor).}
 }
+\value{
+A character vector (or a factor).
+}
 \description{
 This uses a regular expression to strip a code from beging of a character
 string. Useful to extract names from code-name variables.

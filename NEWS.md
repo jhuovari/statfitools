@@ -1,6 +1,8 @@
 # statfitools 0.3.0
 
-* `extract_name()` recognise now more complex codes.
+* `extract_name()` recognise now more complex codes and return factor for factors.
+* `clean_times()` now works also for mounths and quarters
+* `make_names()` return factor for factors.
 
 
 # statfitools 0.3.0

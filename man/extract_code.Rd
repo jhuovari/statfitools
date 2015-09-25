@@ -12,6 +12,9 @@ extract_code(x, numbers_as_numeric = TRUE)
 \item{numbers_as_numeric}{A locigal. Whether to try to convert a code to
 a numeric.}
 }
+\value{
+A character vector (or a factor).
+}
 \description{
 This uses a regular expression to get a code from beging of a character
 string. Useful to extract names from code-name variables.
