@@ -11,6 +11,10 @@ sf_get_ex_munic <- function(
   url =
     "http://www.tilastokeskus.fi/meta/luokitukset/_linkki/lakkautetut_kunnat_aakkosissa_15.txt")
 {
+  # check if current url
+  if (!grepl(substr(Sys.Date(), 3,4), url)) warning(
+    "The url for sf_get_ex_munic() might be out of date.")
+
   z <- read.delim2(file = url, na.strings = "-")
   y <- z[, c(1:5)]
   names(y) <- c("old_code", "old_name", "date", "new_code", "new_name")
