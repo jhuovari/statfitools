@@ -18,7 +18,7 @@
 
 extract_code <- function (x, numbers_as_numeric = TRUE) {
   if (is.factor(x)){
-    levels(x) <- extract_code(levels(x))
+    levels(x) <- extract_code(levels(x), numbers_as_numeric = numbers_as_numeric)
     return(x)
   } else{
     y <- gsub(" .*", "", x)
