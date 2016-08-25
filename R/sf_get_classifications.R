@@ -69,7 +69,8 @@ sf_get_class_key <- function(classification, year){
   z
 }
 
-
+# "http://www.tilastokeskus.fi/meta/luokitukset/kunta/001-2016/kunta_mk_teksti.txt"
+# http://www.tilastokeskus.fi/meta/luokitukset/kunta/001-2015/mk_teksti.txt
 
 #' Download a data.frame of key to trasform from kunta to other classifications
 #'
