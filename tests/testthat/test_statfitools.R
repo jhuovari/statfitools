@@ -36,4 +36,6 @@ context("clean")
 
 test_that("clean_times return right",{
   expect_is(clean_times(output_ind, time_format = "date")$time, "Date")
+  expect_is(clean_times(public_debt)$time, "numeric")
+  expect_equal(min(clean_times(public_debt)$time), 1975)
 })

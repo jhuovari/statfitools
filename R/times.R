@@ -29,10 +29,10 @@ clean_times <- function(x, time_format = NULL,
   # Only yearly
   if (length(sub_year_col) == 0){
     if (is.null(time_format) || time_format == "num"){
-      x$time <- tidyr::extract_numeric(x[, year_col])
+      x$time <- readr::parse_number(x[, year_col])
     } else {
       x$time <- as.Date(
-        paste0(tidyr::extract_numeric(x[, year_col]), "-01-01"))
+        paste0(readr::parse_number(x[, year_col]), "-01-01"))
     }
     x[, year_col] <- NULL
     return(x)
@@ -56,11 +56,11 @@ clean_times <- function(x, time_format = NULL,
     mounths <- seq.int(1, by = 12/length(subs), length.out = length(subs))
 
     if (time_format == "num"){
-      x$time <- tidyr::extract_numeric(x[, year_col]) +
+      x$time <- readr::parse_number(x[, year_col]) +
         (match(x[[sub_year_col]], subs) - 1) * 1/length(subs)
     } else {
       x$time <- as.Date(
-        paste0(tidyr::extract_numeric(x[, year_col]), "-",
+        paste0(readr::parse_number(x[, year_col]), "-",
                mounths[match(x[[sub_year_col]], subs)] , "-1"))
     }
     x[, year_col] <- NULL

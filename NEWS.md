@@ -1,3 +1,5 @@
+# statfitools 0.3.1.9000
+
 # statfitools 0.3.1
 
 * `extract_name()` recognise now more complex codes and return factor for factors.
