@@ -40,6 +40,7 @@ devtools::install_github("jhuovari/statfitools")
 
 ```{r init, message=FALSE}
 library("statfitools")
+library("dplyr")
 
 ```
 
@@ -47,7 +48,7 @@ library("statfitools")
 
 #### Make legal names
 
-Try to make more readable names than `make.names()`
+Try to make more readable valid names than `make.names()`
 
 * `make_names()` to pass a strings. 
 * `clean_names()` to pass a data.frame or other objects with names to change.
@@ -62,7 +63,7 @@ dat <- pxweb::get_pxweb_data(
     Alue = c('SSS'),
     "Pääasiallinen toiminta" = c('*'),
     Sukupuoli = c('S'),
-    Ikä = c('SSS'),
+    "Ikä" = c('SSS'),
     Vuosi = c('*')),
   clean = TRUE)
 
@@ -90,5 +91,41 @@ extract_name("508 Mantta-Vilppula")
 * `sf_recode()`, `sf_name2code()` and `sf_code2name()` for recoding classifications
 
 ### Work with a statfi regional data 
+
+
 #### Clean regional names
 Statistics Finland uses different formats to present regional names. Make them uniform.
+
+#### Recode and aggregate regional data
+
+Download latest classification key. Here Tilastollinen kuntaryhmitys.
+And data.
+Join and aggregate
+
+```{r recode}
+
+key_kuntar <- sf_get_reg_keytable("Kuntaryhmä")
+
+dat_ku <- pxweb::get_pxweb_data(
+  url = "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/vrm/tyokay/010_tyokay_tau_101.px",
+  dims = list(
+    Alue = c('*'),
+    "Pääasiallinen toiminta" = c('11'),  # Työlliset
+    Sukupuoli = c('S'),
+    "Ikä" = c('SSS'),
+    Vuosi = c('*')),
+  clean = TRUE) %>% 
+  clean_names() %>% 
+  clean_times()
+
+# Yhdistäminen ja 
+
+dat_kuntar <- dat_ku %>% 
+  mutate(ku_code = sf_name2code(Alue, class = "kunta", year = 2016)) %>%   # Varmempi yhdistää koodilla
+  left_join(key_kuntar, by = c(ku_code = "Knro")) %>% 
+  group_by(Kuntaryhma, time, Paaasiallinen_toiminta) %>% 
+  summarise(values = sum(values, na.rm = TRUE)) %>% 
+  ungroup()
+
+```
+

@@ -15,9 +15,9 @@
 #' @param ... futher parameters to \code{\link{sf_get_class}} to select classification.
 #' @export
 #' @examples
-#'  sf_recode(c(49, 50), 1, 2, class = "kunta", year = 2014)
+#'  sf_recode(c("049", "050"), 1, 2, class = "kunta", year = 2014)
 #'  sf_recode(c("Espoo", "Eura"), 2, 1, class = "kunta", year = 2014)
-#'  sf_code2name(c(49, 50), class = "kunta", year = 2014)
+#'  sf_code2name(c("049", "050"), class = "kunta", year = 2014)
 
 sf_recode <- function(x, from, to, ...){
   cl <- sf_get_class(...)

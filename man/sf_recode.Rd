@@ -27,8 +27,8 @@ It is best to use column postions for \code{from} and \code{to}.
 The first should be a numeric code and the second a name.
 }
 \examples{
- sf_recode(c(49, 50), 1, 2, class = "kunta", year = 2014)
+ sf_recode(c("049", "050"), 1, 2, class = "kunta", year = 2014)
  sf_recode(c("Espoo", "Eura"), 2, 1, class = "kunta", year = 2014)
- sf_code2name(c(49, 50), class = "kunta", year = 2014)
+ sf_code2name(c("049", "050"), class = "kunta", year = 2014)
 }
 

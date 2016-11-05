@@ -18,6 +18,6 @@ data.frame with columns
 Download data.frame for abolished municipalities
 }
 \examples{
-k <- sf_get_ex_munic()
+   k <- sf_get_ex_munic()
 }
 

@@ -6,7 +6,8 @@
 #' @return data.frame with columns
 #'    old_code, old_name, "data", new_code, new_name.
 #' @export
-#' @examples k <- sf_get_ex_munic()
+#' @examples
+#'    k <- sf_get_ex_munic()
 sf_get_ex_munic <- function(
   url =
     "http://www.tilastokeskus.fi/meta/luokitukset/_linkki/lakkautetut_kunnat_aakkosissa_15.txt")
@@ -15,7 +16,9 @@ sf_get_ex_munic <- function(
   if (!grepl(substr(Sys.Date(), 3,4), url)) warning(
     "The url for sf_get_ex_munic() might be out of date.")
 
-  z <- read.delim2(file = url, na.strings = "-")
+  z <- suppressWarnings(
+    readr::read_tsv(file = url, na = "-", col_types = "ccccc",
+                       locale = readr::locale(encoding = "latin1")))
   y <- z[, c(1:5)]
   names(y) <- c("old_code", "old_name", "date", "new_code", "new_name")
   y$date <- as.Date(y$date, format = "%d.%m.%Y")
@@ -41,14 +44,13 @@ sf_recode_ex_munic <- function(x, year = NULL, mcodes = sf_get_ex_munic()){
     mcodes  <- subset(mcodes, date < as.Date(paste(year, 1, 2, sep = "-")))
   }
   # there could be several changes for municipalities
-  y <- tidyr::extract_numeric(x)
+  y <- as.numeric(x)
   if (any(is.na(y))){
-    y[is.na(y)] <- 0
+    x[is.na(y)] <- "000"
     warning(unique(x[is.na(y)]), " replaced with 0")
   }
-  while (any(y %in% mcodes$old_code)){
-    y <- plyr::mapvalues(y, mcodes$old_code, mcodes$new_code, warn_missing = FALSE)
+  while (any(x %in% mcodes$old_code)){
+    x <- plyr::mapvalues(x, mcodes$old_code, mcodes$new_code, warn_missing = FALSE)
   }
-  y <- factor(y)
-  y
+  x
 }

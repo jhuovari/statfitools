@@ -19,3 +19,22 @@ output_ind <-
                  clean = TRUE)
 
 devtools::use_data(output_ind, overwrite = TRUE)
+
+keskuskunnat <- readr::read_tsv("data-raw/Keskuskunnat.txt", col_types = readr::cols(
+  Kunta = readr::col_character(),
+  Keskusryhma = readr::col_character()
+))
+
+devtools::use_data(keskuskunnat, overwrite = TRUE)
+
+library(dplyr)
+
+key_kuntar$Kuntaryhma <- as.character(key_kuntar$Kuntaryhma)
+key_kuntar[match(keskuskunnat$Kunta, key_kuntar$Kunta), "Kuntaryhma"] <- keskuskunnat$Keskusryhma
+
+keskuskuntaryhma_key <- key_kuntar %>%
+  select(Knro, Kunta, Keskusryhma = Kuntaryhma)
+
+devtools::use_data(keskuskuntaryhma_key, overwrite = TRUE)
+
+write.csv2(keskuskuntaryhma_key, file = "data-raw/Keskuskuntaryhma_key.csv")

@@ -1,5 +1,8 @@
 # statfitools 0.3.1.9000
 
+* A new function `sf_get_reg_key_table()` to get regional classification keys
+* `sf_get_class()` returns code as character
+
 # statfitools 0.3.1
 
 * `extract_name()` recognise now more complex codes and return factor for factors.

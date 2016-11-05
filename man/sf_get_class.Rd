@@ -4,7 +4,8 @@
 \alias{sf_get_class}
 \title{Download statistical classifications from the Statistics Finland.}
 \usage{
-sf_get_class(class, year, lang = "fi")
+sf_get_class(class, year, lang = "fi",
+  as_factors = default.stringsAsFactors())
 }
 \arguments{
 \item{class}{a a name of the classification.}
@@ -12,6 +13,9 @@ sf_get_class(class, year, lang = "fi")
 \item{year}{a year of the classification.}
 
 \item{lang}{a language code. Available "fi", "en", "sv".}
+
+\item{as_factors}{a logical. Should columns be converted to factors. The
+default is from \code{\link{options}}("stringsAsFactors").}
 }
 \value{
 a data.frame.
@@ -41,7 +45,7 @@ Economic
 }
 }
 \examples{
-x <- sf_get_class("kunta", 2014)
+x <- sf_get_class(class = "kunta", year = 2016)
 y <- sf_get_class("seutukunta", 2013)
 z <- sf_get_class("maakunta", 2013)
 t <- sf_get_class("toimiala", 2008, lang = "en")

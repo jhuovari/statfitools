@@ -25,8 +25,8 @@ Versions for all years are not available and Statistical Finland might also
 remove older versions.
 }
 \examples{
-x <- sf_get_class_key("kuntaryhmitys", 2014)
-y <- sf_get_class_key("tyossakayntial", 2014)
+x <- sf_get_class_key("kuntaryhmitys", 2016)
+y <- sf_get_class_key("tyossakayntial", 2016)
 }
 \seealso{
 Other sf_class: \code{\link{sf_get_class}},
