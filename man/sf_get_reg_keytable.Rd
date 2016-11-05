@@ -10,7 +10,8 @@ sf_get_reg_keytable(classes = NULL,
 }
 \arguments{
 \item{classes}{a name or vector of names of the regional classification.
-NULL (default) return all classifications.}
+NULL (default) return all classifications. Names can be names in
+orginal table or valid names given by \code{\link{make_names}}.}
 
 \item{url}{a url of the table.}
 

@@ -36,6 +36,8 @@ Regional
   \item kunta
   \item seutukunta
   \item maakunta
+  \item kuntaryhmitys
+  \item tyossakayntial
 }
 
 Economic
@@ -47,7 +49,7 @@ Economic
 \examples{
 x <- sf_get_class(class = "kunta", year = 2016)
 y <- sf_get_class("seutukunta", 2013)
-z <- sf_get_class("maakunta", 2013)
+z <- sf_get_class("maakunta", 2016)
 t <- sf_get_class("toimiala", 2008, lang = "en")
 }
 \seealso{

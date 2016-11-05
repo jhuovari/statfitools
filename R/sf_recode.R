@@ -25,13 +25,13 @@ sf_recode <- function(x, from, to, ...){
   y
 }
 
-#' @describeIn sf_recode
+#' @describeIn sf_recode From code to name.
 #' @export
 sf_code2name <- function(x, ...){
   sf_recode(x, 1, 2, ...)
 }
 
-#' @describeIn sf_recode
+#' @describeIn sf_recode From name to code.
 #' @export
 sf_name2code <- function(x, ...){
   sf_recode(x, 2, 1, ...)

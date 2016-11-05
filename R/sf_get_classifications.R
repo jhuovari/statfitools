@@ -14,6 +14,8 @@
 #'   \item kunta
 #'   \item seutukunta
 #'   \item maakunta
+#'   \item kuntaryhmitys
+#'   \item tyossakayntial
 #' }
 #'
 #' Economic
@@ -34,18 +36,16 @@
 #' @examples
 #' x <- sf_get_class(class = "kunta", year = 2016)
 #' y <- sf_get_class("seutukunta", 2013)
-#' z <- sf_get_class("maakunta", 2013)
+#' z <- sf_get_class("maakunta", 2016)
 #' t <- sf_get_class("toimiala", 2008, lang = "en")
 sf_get_class <- function(class, year, lang = "fi",
                          as_factors = default.stringsAsFactors()){
   lang <- if(lang == "fi") "" else paste0("_", lang)
   base_url <- "http://tilastokeskus.fi/meta/luokitukset/"
   tk_url <- paste0(base_url, class, "/001-", year, "/tekstitiedosto", lang, ".txt")
-  z <- readr::read_tsv(file = tk_url, na = "-", skip = 3,
-                       col_types = readr::cols(koodi = readr::col_character(),
-                                               nimike = readr::col_character()
-                                               ),
-                       locale = readr::locale(encoding = "latin1"))
+  z <- suppressMessages(readr::read_tsv(file = tk_url, na = "-", skip = 3,
+                       col_types = NULL,
+                       locale = readr::locale(encoding = "latin1")))
 
   if (as_factors) {
     z[] <- lapply(z, function(x) factor(x, levels = unique(x)))
@@ -74,10 +74,11 @@ sf_get_class <- function(class, year, lang = "fi",
 #' x <- sf_get_class_key("kuntaryhmitys", 2016)
 #' y <- sf_get_class_key("tyossakayntial", 2016)
 sf_get_class_key <- function(classification, year){
+  .Deprecated("sf_get_class")
   base_url <- "http://tilastokeskus.fi/meta/luokitukset/"
   end_url <- "/tekstitiedosto.txt"
   tk_url <- paste0(base_url, classification, "/001-", year, end_url)
-  z <- read.delim2(file = tk_url, na.strings = "-", skip = 3)
+  z <- utils::read.delim2(file = tk_url, na.strings = "-", skip = 3)
   z
 }
 
@@ -104,7 +105,7 @@ sf_get_reg_key <- function(to_reg, year){
   mid_url <- "/luokitusavain_"
   end_url <- "_teksti.txt"
   tk_url <- paste0(base_url, "/001-", year, mid_url, to_reg, end_url)
-  z <- read.delim2(file = tk_url, na.strings = "-", skip = 3)
+  z <- utils::read.delim2(file = tk_url, na.strings = "-", skip = 3)
 
   z
 }
@@ -118,7 +119,8 @@ sf_get_reg_key <- function(to_reg, year){
 #' from \url{}
 #'
 #' @param classes a name or vector of names of the regional classification.
-#'        NULL (default) return all classifications.
+#'        NULL (default) return all classifications. Names can be names in
+#'        orginal table or valid names given by \code{\link{make_names}}.
 #' @param url a url of the table.
 #' @param as_factors a logical. Should columns be converted to factors. The
 #'        default is from \code{\link{options}}("stringsAsFactors").
@@ -139,7 +141,7 @@ sf_get_reg_keytable <-
            as_factors = default.stringsAsFactors()){
   # Download and prepare table
   xfile <- tempfile(fileext = ".xlsx")
-  download.file(url, xfile, mode = "wb")
+  utils::download.file(url, xfile, mode = "wb")
   x <- readxl::read_excel(xfile)
   unlink(xfile)
   x <- clean_names(x)

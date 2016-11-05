@@ -82,9 +82,11 @@ extract_name("508 Mantta-Vilppula")
 
 Statistics Finland uses different formats to present regional names. Make them uniform.
 
+TODO
+
 #### Recode and aggregate regional data
 
-Download latest classification key. Here Tilastollinen kuntaryhmitys. And data. Join and aggregate
+Download classification key for Tilastollinen kuntaryhmitys. And data. Join and aggregate
 
 ``` r
 
@@ -101,8 +103,6 @@ dat_ku <- pxweb::get_pxweb_data(
   clean = TRUE) %>% 
   clean_names() %>% 
   clean_times()
-
-# Yhdistäminen ja 
 
 dat_kuntar <- dat_ku %>% 
   mutate(ku_code = sf_name2code(Alue, class = "kunta", year = 2016)) %>%   # Varmempi yhdistää koodilla

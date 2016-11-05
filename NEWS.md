@@ -1,7 +1,8 @@
-# statfitools 0.3.1.9000
+# statfitools 0.3.2
 
-* A new function `sf_get_reg_key_table()` to get regional classification keys
-* `sf_get_class()` returns code as character
+* A new function `sf_get_reg_keytable()` to get regional classification keys.
+* `sf_get_class()` returns code as character.
+* keskuskunnat and keskuskuntaryhma_key datasets.
 
 # statfitools 0.3.1
 
