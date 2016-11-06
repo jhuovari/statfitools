@@ -105,7 +105,8 @@ dat_ku <- pxweb::get_pxweb_data(
   clean_times()
 
 dat_kuntar <- dat_ku %>% 
-  mutate(ku_code = sf_name2code(Alue, class = "kunta", year = 2016)) %>%   # Varmempi yhdistää koodilla
+  # safer to use codes
+  mutate(ku_code = sf_name2code(Alue, class = "kunta", year = 2016)) %>%   
   left_join(key_kuntar, by = c(ku_code = "Knro")) %>% 
   group_by(Kuntaryhma, time, Paaasiallinen_toiminta) %>% 
   summarise(values = sum(values, na.rm = TRUE)) %>% 
