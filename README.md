@@ -86,12 +86,38 @@ TODO
 
 #### Recode and aggregate regional data
 
-Download classification key for Tilastollinen kuntaryhmitys. And data. Join and aggregate
+Available municipality based regional classifications from Statistics Finland.
 
 ``` r
 
+names(sf_get_reg_keytable(NULL))
+#>  [1] "Knro"                  "Kunta"                
+#>  [3] "Kommun"                "Mkkoodi"              
+#>  [5] "Maakunta"              "Landskap"             
+#>  [7] "Region"                "Avi_koodi"            
+#>  [9] "AVI"                   "RFV"                  
+#> [11] "AVI.1"                 "Ely_koodi"            
+#> [13] "ELY_keskus"            "ELY_central"          
+#> [15] "ELY_Centre"            "Seutukuntakoodi"      
+#> [17] "Seutukunta"            "Ekonomisk_region"     
+#> [19] "Suuraluekoodi"         "Suuralue"             
+#> [21] "Storomrade"            "Major_region"         
+#> [23] "Kuntaryhmakoodi"       "Kuntaryhma"           
+#> [25] "Kommungrup"            "Municipal_group"      
+#> [27] "Kielisuhdekoodi"       "Kielisuhde"           
+#> [29] "Spraklig_indelning"    "Language_distribution"
+```
+
+Aggregate to Tilastollinen kuntaryhmitys.
+
+Download classification key and data. Join and aggregate
+
+``` r
+
+# Classification key
 key_kuntar <- sf_get_reg_keytable("Kuntaryhmä")
 
+# Data
 dat_ku <- pxweb::get_pxweb_data(
   url = "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/vrm/tyokay/010_tyokay_tau_101.px",
   dims = list(
@@ -104,6 +130,7 @@ dat_ku <- pxweb::get_pxweb_data(
   clean_names() %>% 
   clean_times()
 
+# Join and aggregate
 dat_kuntar <- dat_ku %>% 
   # safer to use codes
   mutate(ku_code = sf_name2code(Alue, class = "kunta", year = 2016)) %>%   

@@ -100,14 +100,25 @@ TODO
 
 #### Recode and aggregate regional data
 
-Download classification key for Tilastollinen kuntaryhmitys.
-And data.
+Available municipality based regional classifications from Statistics Finland.
+
+```{r}
+
+names(sf_get_reg_keytable(NULL))
+
+```
+
+Aggregate to Tilastollinen kuntaryhmitys.
+
+Download classification key and data.
 Join and aggregate
 
 ```{r recode}
 
+# Classification key
 key_kuntar <- sf_get_reg_keytable("Kuntaryhmä")
 
+# Data
 dat_ku <- pxweb::get_pxweb_data(
   url = "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/vrm/tyokay/010_tyokay_tau_101.px",
   dims = list(
@@ -120,6 +131,7 @@ dat_ku <- pxweb::get_pxweb_data(
   clean_names() %>% 
   clean_times()
 
+# Join and aggregate
 dat_kuntar <- dat_ku %>% 
   # safer to use codes
   mutate(ku_code = sf_name2code(Alue, class = "kunta", year = 2016)) %>%   
